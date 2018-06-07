@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/flynn/u2f/u2fhid"
+	"github.com/mathiasxx/u2f/u2fhid"
 )
 
 func main() {

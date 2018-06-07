@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/flynn/u2f/u2fhid"
-	"github.com/flynn/u2f/u2ftoken"
+	"github.com/mathiasxx/u2f/u2fhid"
+	"github.com/mathiasxx/u2f/u2ftoken"
 )
 
 func main() {

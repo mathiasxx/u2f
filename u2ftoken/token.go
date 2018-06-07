@@ -117,6 +117,10 @@ type AuthenticateRequest struct {
 // An AuthenticateResponse is a message returned in response to a successful
 // authentication request.
 type AuthenticateResponse struct {
+	// UserPresence is set true if the device asserts that user presence has
+	// been confirmed.
+	UserPresence bool
+
 	// Counter is the value of the counter that is incremented by the token
 	// every time it performs an authentication operation.
 	Counter uint32
@@ -179,9 +183,10 @@ func (t *Token) Authenticate(req AuthenticateRequest) (*AuthenticateResponse, er
 	}
 
 	return &AuthenticateResponse{
-		Counter:     binary.BigEndian.Uint32(res.Data[1:]),
-		Signature:   res.Data[5:],
-		RawResponse: res.Data,
+		UserPresence: int(res.Data[0])&0x1 > 0,
+		Counter:      binary.BigEndian.Uint32(res.Data[1:]),
+		Signature:    res.Data[5:],
+		RawResponse:  res.Data,
 	}, nil
 }
 
